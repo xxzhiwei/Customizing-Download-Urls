@@ -4,23 +4,23 @@ declare(strict_types=1);
 // SPDX-FileCopyrightText: errol <err0l@qq.com>
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-namespace OCA\FilesCustomUrlPlugin\Controller;
+namespace OCA\CustomingDownloadUrls\Controller;
 
-use OCA\FilesCustomUrlPlugin\AppInfo\Application;
+use OCA\CustomingDownloadUrls\AppInfo\Application;
 use OCP\AppFramework\Controller;
 use OCP\IRequest;
 
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\TemplateResponse;
-use OCA\FilesCustomUrlPlugin\Service\FilesCustomUrlService;
+use OCA\CustomingDownloadUrls\Service\CustomUrlService;
 
-class FilesCustomUrlPluginController extends Controller {
+class CustomingDownloadUrlsController extends Controller {
 
-	private $filesCustomUrlService;
+	private $customUrlService;
 
-	public function __construct(IRequest $request, FilesCustomUrlService $filesCustomUrlService) {
+	public function __construct(IRequest $request, CustomUrlService $customUrlService) {
 		parent::__construct(Application::APP_ID, $request);
-		$this->filesCustomUrlService = $filesCustomUrlService;
+		$this->customUrlService = $customUrlService;
 	}
 
 	/**
@@ -29,7 +29,7 @@ class FilesCustomUrlPluginController extends Controller {
 	 */
 	public function index(): TemplateResponse {
 		return new TemplateResponse(Application::APP_ID, 'index', [
-			'url' => $this->filesCustomUrlService->getUrl(),
+			'url' => $this->customUrlService->getUrl(),
 		]);
 	}
 
@@ -41,7 +41,7 @@ class FilesCustomUrlPluginController extends Controller {
 		return new DataResponse([
 			'message' => 'ok',
 			'data' => [
-				'url' => $this->filesCustomUrlService->getUrl(),
+				'url' => $this->customUrlService->getUrl(),
 			]
 		]);
 	}
@@ -54,7 +54,7 @@ class FilesCustomUrlPluginController extends Controller {
 
 		$input = file_get_contents('php://input');
 		$array = json_decode($input, true);
-		$this->filesCustomUrlService->saveUrl($array['url']);
+		$this->customUrlService->saveUrl($array['url']);
 		return new DataResponse([
 			'message' => 'ok'
 		]);

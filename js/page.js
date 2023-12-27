@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         $.ajax({
-            url: '/nextcloud/index.php/apps/files_custom_url_plugin/saveUrl',
+            url: '/nextcloud/index.php/apps/customizing_download_urls/saveUrl',
             method: "POST",
             dataType: "json",
             contentType: "application/json",

@@ -15,8 +15,8 @@ declare(strict_types=1);
 return [
 	'routes' => [
 		// name对应的是控制器的方法，url对应请求路径
-		['name' => 'FilesCustomUrlPlugin#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'FilesCustomUrlPlugin#getUrl', 'url' => '/getUrl', 'verb' => 'GET'],
-		['name' => 'FilesCustomUrlPlugin#saveUrl', 'url' => '/saveUrl', 'verb' => 'POST'],
+		['name' => 'CustomingDownloadUrls#index', 'url' => '/', 'verb' => 'GET'],
+		['name' => 'CustomingDownloadUrls#getUrl', 'url' => '/getUrl', 'verb' => 'GET'],
+		['name' => 'CustomingDownloadUrls#saveUrl', 'url' => '/saveUrl', 'verb' => 'POST'],
 	],
 ];

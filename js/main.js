@@ -22,7 +22,7 @@ if (!navigator.clipboard) {
 
 if (!customUrl) {
     $.ajax({
-        url: '/nextcloud/index.php/apps/files_custom_url_plugin/getUrl',
+        url: '/nextcloud/index.php/apps/customizing_download_urls/getUrl',
         method: "GET",
         dataType: "json",
         contentType: "application/json",
@@ -49,11 +49,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (OCA.Sharing && OCA.Sharing.ExternalShareActions) {
         var _instance;
         OCA.Sharing.ExternalShareActions.registerAction({
-            id: "copy custom url",
+            id: "copy my custom url",
             data: function(instance) {
-                _instance = instance;
+                _instance = instance; // instance是一个vue组件实例；
                 return {
-                    is: instance.$parent.$children[0].$options.components.NcActionButton, // 引用NcActionButton组件
+                    is: instance.$parent.$children[0].$options.components.NcActionButton, // 引用NcActionButton组件；通过vue内置的component组件渲染（查看nextcloud源码得知）
                     text: "复制自定义链接",
                     icon: "icon-external"
                 }
@@ -63,14 +63,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 click: function() {
                     var url = "";
                     if (_instance) {
-                        // 完整的下载路径如下：
-                        // http://192.168.3.31:8888/nextcloud/index.php/s/JajDWs8WoijNZ69/download/-2e11bdc7398fea33.jpg
-                        // 即是说，在分享链接后拼接'/download/文件名'就是完整的下载链接
                         var _share = _instance._props.share._share;
+                        // 在分享链接后拼接'/download/文件名'就是完整的下载链接
                         url = _share.url + "/download" + _share.file_target;
                     }
-                    _instance.$parent.$parent.$parent.$parent.$parent.$options._parentListeners['update:open'](false);
-                    // 必须要等菜单消失后才能复制成功；
+      				_instance.$parent.$parent.$parent.$parent.$parent.$options._parentListeners['update:open'](false);
                     copyHandler(customUrl, url);
                 }                
             }

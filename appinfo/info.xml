@@ -1,18 +1,17 @@
 <?xml version="1.0"?>
-<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <!--
     SPDX-FileCopyrightText: errol <err0l@qq.com>
     SPDX-License-Identifier: CC0-1.0
     -->
-    <id>files_custom_url_plugin</id>
-    <name>Files Custom Url Plugin</name>
-    <summary>A files app plugin for customizing urls.</summary>
-    <description><![CDATA[一个自定义文件链接的files app插件，启用后该插件后，将会在files的菜单提供额外的按钮，用于解决在内网中使用nextcloud时，文件下载/分享链接总是以内网主机地址作为前缀的问题。]]></description>
+    <id>customizing_download_urls</id>
+    <name>Customizing Download Urls</name>
+    <summary>A app for customizing files download urls.</summary>
+    <description><![CDATA[一个自定义文件分享/下载链接的插件，用于解决在内网中使用nextcloud分享/下载文件时，链接以内网主机地址作为前缀的问题。]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
     <author mail="err0l@qq.com" >errol</author>
-    <namespace>FilesCustomUrlPlugin</namespace>
+    <namespace>CustomingDownloadUrls</namespace>
     <category>tools</category>
     <bugs>http://www.baidu.com</bugs>
     <dependencies>

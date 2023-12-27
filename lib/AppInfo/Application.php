@@ -4,7 +4,7 @@ declare(strict_types=1);
 // SPDX-FileCopyrightText: errol <err0l@qq.com>
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-namespace OCA\FilesCustomUrlPlugin\AppInfo;
+namespace OCA\CustomingDownloadUrls\AppInfo;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -15,7 +15,7 @@ use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\Util;
 
 class Application extends App implements IBootstrap {
-	public const APP_ID = 'files_custom_url_plugin';
+	public const APP_ID = 'customizing_download_urls';
 
 	public function __construct() {
 		parent::__construct(self::APP_ID);

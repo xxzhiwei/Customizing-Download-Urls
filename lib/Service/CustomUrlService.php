@@ -1,7 +1,7 @@
 <?php
-namespace OCA\FilesCustomUrlPlugin\Service;
+namespace OCA\CustomingDownloadUrls\Service;
 
-class FilesCustomUrlService {
+class CustomUrlService {
 	private $url;
 	private $filePath;
 
