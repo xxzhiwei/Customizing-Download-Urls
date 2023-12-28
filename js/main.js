@@ -1,6 +1,6 @@
 var customUrl = window.sessionStorage.getItem("customUrl");
 
-function copy() {
+function copy(text) {
     var el = document.createElement("input");
     el.value = text;
     el.style.position = "fixed";
@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 _instance = instance; // instance是一个vue组件实例；
                 return {
                     is: instance.$parent.$children[0].$options.components.NcActionButton, // 引用NcActionButton组件；通过vue内置的component组件渲染（查看nextcloud源码得知）
-                    text: "复制自定义链接",
+                    text: "复制我的自定义链接",
                     icon: "icon-external"
                 }
             },
