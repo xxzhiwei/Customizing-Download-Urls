@@ -1,4 +1,6 @@
 var customUrl = window.sessionStorage.getItem("customUrl");
+let urlPatten = /https?:\/\/.*\.[0-9]{1,4}(:[\w]+)?/g;
+const customUrlBaseRoute = OCP.InitialState.loadState('customizing_download_urls', 'custom_url_base_route');
 
 function copy(text) {
     var el = document.createElement("input");
@@ -22,7 +24,8 @@ if (!navigator.clipboard) {
 
 if (!customUrl) {
     $.ajax({
-        url: '/nextcloud/index.php/apps/customizing_download_urls/getUrl',
+        url: customUrlBaseRoute + 'getUrl',
+        // url: '/index.php/apps/customizing_download_urls/getUrl',
         method: "GET",
         dataType: "json",
         contentType: "application/json",
@@ -34,13 +37,18 @@ if (!customUrl) {
 }
 
 // 将url拼接后，复制到粘贴板；
+// 如果是内网
 function copyHandler(baseUrl, url) {
-    var index = url.indexOf('/nextcloud');
-    
-    if (index != -1) {
-        url = url.slice(index + 1);
+    // http://192.168.3.31:8888/index.php/s/wTWnmeQ4yLLY3Hp/download/-2e11bdc7398fea33.jpg
+    var _url = url;
+    if (baseUrl) {
+        // 若以"/"，结尾，则删除
+        if (baseUrl.endsWith('/')) {
+            baseUrl = baseUrl.slice(0, baseUrl.length - 1);
+        }
+        _url = url.replace(urlPatten, baseUrl);
     }
-    var _url = baseUrl + url;
+    
     navigator.clipboard.writeText(_url, true);
     OC.dialogs.info('复制成功？！', '提示');
 }
@@ -69,7 +77,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
       				_instance.$parent.$parent.$parent.$parent.$parent.$options._parentListeners['update:open'](false);
                     copyHandler(customUrl, url);
-                }                
+                }
             }
         });
     }

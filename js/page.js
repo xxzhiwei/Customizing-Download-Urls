@@ -1,6 +1,8 @@
 // 管理页面【虽然只有一个接口就是了】
 // 对应的页面为templates/index.php
 document.addEventListener('DOMContentLoaded', () => {
+
+    const customUrlBaseRoute = OCP.InitialState.loadState('customizing_download_urls', 'custom_url_base_route');
     $('#url-btn').on('click', function () {
         var input = document.querySelector("#url-input");
         var url = input.value;
@@ -11,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         $.ajax({
-            url: '/nextcloud/index.php/apps/customizing_download_urls/saveUrl',
+            // url: '/nextcloud/index.php/apps/customizing_download_urls/saveUrl',
+            url: customUrlBaseRoute + 'saveUrl',
             method: "POST",
             dataType: "json",
             contentType: "application/json",
