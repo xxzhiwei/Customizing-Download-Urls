@@ -1,6 +1,8 @@
-var customUrl = window.sessionStorage.getItem("customUrl");
-let urlPatten = /https?:\/\/.*\.[0-9]{1,4}(:[\w]+)?/g;
-const customUrlBaseRoute = OCP.InitialState.loadState('customizing_download_urls', 'custom_url_base_route');
+// var customUrl = window.sessionStorage.getItem("customUrl");
+// let urlPatten = /https?:\/\/.*\.[0-9]{1,4}(:[\w]+)?/g;
+// /^(?:http:\/\/|https:\/\/)?(?:localhost|(?:\d{1,3}\.){3}\d{1,3})(?::\d{1,5})?$/;
+const urlPatten = /^(?<protocol>\w+):\/\/(?<host>(localhost|(\d{1,3}\.){3}\d{1,3}))(?::(?<port>\d+))?/;
+const customUrl = OCP.InitialState.loadState('customizing_download_urls', 'custom_url');
 
 function copy(text) {
     var el = document.createElement("input");
@@ -22,23 +24,24 @@ if (!navigator.clipboard) {
     navigator.clipboard = { writeText: copy };
 }
 
-if (!customUrl) {
-    $.ajax({
-        url: customUrlBaseRoute + 'getUrl',
-        // url: '/index.php/apps/customizing_download_urls/getUrl',
-        method: "GET",
-        dataType: "json",
-        contentType: "application/json",
-        success: function(resp) {
-            customUrl = resp.data.url;
-            window.sessionStorage.setItem("customUrl", customUrl);
-        }
-    });
-}
+// if (!customUrl) {
+//     $.ajax({
+//         url: customUrlBaseRoute + 'getUrl',
+//         // url: '/index.php/apps/customizing_download_urls/getUrl',
+//         method: "GET",
+//         dataType: "json",
+//         contentType: "application/json",
+//         success: function(resp) {
+//             customUrl = resp.data.url;
+//             window.sessionStorage.setItem("customUrl", customUrl);
+//         }
+//     });
+// }
 
 // 将url拼接后，复制到粘贴板；
 // 如果是内网
 function copyHandler(baseUrl, url) {
+    // http://localhost:8888/cloud/index.php/s/So5bbKYrtkcFgyj/download/5_6311805933005574187.mp4
     // http://192.168.3.31:8888/index.php/s/wTWnmeQ4yLLY3Hp/download/-2e11bdc7398fea33.jpg
     var _url = url;
     if (baseUrl) {

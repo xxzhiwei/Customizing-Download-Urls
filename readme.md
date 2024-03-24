@@ -12,6 +12,8 @@
 
 > /var/www/html/nextcloud/apps
 
+或者是extra-apps。
+
 打开nextcloud插件管理面板中，并启用该插件。
 
 （其实也可以直接在custom_url.txt文件中直接输入自定义链接，这样就不需要在插件管理面板处定义链接了）
@@ -32,9 +34,21 @@
 
 在浏览器打开下方链接，可看到插件的管理界面。
 
-> http://域名/nextcloud/index.php/apps/customizing_download_urls/
+> http://域名/index.php/apps/customizing_download_urls/
+
+如：http://localhost:8888/cloud/apps/customizing_download_urls/
 
 
 （界面比较简单，且仅包含一个保存链接的功能）
 
 ![image](./images/2231EE9C113A4D75E3A40BA35B64FFA0.jpg)
+
+## 三、其他更新
+
+1、新增了"custom_url_base_route.txt"
+
+同样的，使用时将"custom_url_base_route.example.txt"重命名为"custom_url_base_route.txt"。
+
+在该配置文件中可动态设置插件的请求地址，如：
+
+> /cloud/index.php/apps/customizing_download_urls/

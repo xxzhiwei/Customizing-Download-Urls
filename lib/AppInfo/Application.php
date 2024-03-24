@@ -32,6 +32,7 @@ class Application extends App implements IBootstrap {
 			Util::addscript(self::APP_ID, 'main', 'files');
 		});
 		$initialStateService->provideInitialState(Application::APP_ID, 'custom_url_base_route', $customUrlService->getUrlBaseRoute());
+		$initialStateService->provideInitialState(Application::APP_ID, 'custom_url', $customUrlService->getUrl());
 	}
 
 

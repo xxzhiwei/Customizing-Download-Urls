@@ -1,1 +1,1 @@
-/index.php/apps/customizing_download_urls/
+/cloud/index.php/apps/customizing_download_urls/
